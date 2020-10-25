@@ -6,6 +6,7 @@ class ConfigBox {
 public:
 
 	typedef T DataT;
+//	typedef ConfigBox<T> CB;
 
 	bool PushData(const T& In) {
 		Data.push_back(In);
@@ -34,10 +35,22 @@ public:
 	ConfigBox<T> operator [](std::size_t In) {
 		return Boxs[In];
 	}
-	const ConfigBox<T>& operator [](std::size_t In) const{
+	const ConfigBox<T>& operator [](std::size_t In) const {
 		return Boxs[In];
 	}
 
+	typename std::vector<ConfigBox<T>>::iterator begin() {
+		return Boxs.begin();
+	}
+	typename std::vector<ConfigBox<T>>::const_iterator begin() const  {
+		return Boxs.begin();
+	}
+	typename std::vector<ConfigBox<T>>::iterator end() {
+		return Boxs.end();
+	}
+	typename std::vector<ConfigBox<T>>::const_iterator end() const {
+		return Boxs.end();
+	}
 protected:
 	std::vector<T> Data;
 	std::vector<ConfigBox<T>> Boxs;
@@ -53,6 +66,10 @@ int main() {
 
 	B[0].PushData(10);
 	B.PushData(20);
+
+	for (auto& o : B) {
+		o.IndexData(0);
+	}
 
 	return 0;
 
