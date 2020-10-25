@@ -32,7 +32,7 @@ public:
 		return Boxs[Idx];
 	}
 	/**/
-	ConfigBox<T> operator [](std::size_t In) {
+	ConfigBox<T>& operator [](std::size_t In) {
 		return Boxs[In];
 	}
 	const ConfigBox<T>& operator [](std::size_t In) const {
@@ -66,7 +66,7 @@ int main() {
 
 	B[0].PushData(10);
 	B.PushData(20);
-
+	B[0].PushBox(BB);
 	for (auto& o : B) {
 		o.IndexData(0);
 	}
